@@ -18,49 +18,5 @@
     },
     "location": "Singapore",
     "company": "Cendana Ventures Sdn Bhd (1641828-K)"
-  },
-  {
-    "id": "jane-smith",
-    "name": "Jane Smith",
-    "title": "UX Designer",
-    "bio": "Creating beautiful and intuitive user experiences that make a difference.",
-    "avatar": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-    "website": "https://janesmith.design",
-    "social": {
-      "twitter": "https://twitter.com/janesmith",
-      "github": "https://github.com/janesmith",
-      "linkedin": "https://linkedin.com/in/janesmith",
-      "dribbble": "https://dribbble.com/janesmith"
-    },
-    "skills": ["Figma", "Sketch", "Adobe XD", "Prototyping", "User Research"],
-    "contact": {
-      "email": "jane.smith@example.com",
-      "phone": "+1 (555) 987-6543",
-      "whatsapp": "+15559876543"
-    },
-    "location": "New York, NY",
-    "company": "Design Studio"
-  },
-  {
-    "id": "mike-johnson",
-    "name": "Mike Johnson",
-    "title": "Product Manager",
-    "bio": "Driving product strategy and execution to deliver exceptional user value.",
-    "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-    "website": "https://mikejohnson.pm",
-    "social": {
-      "twitter": "https://twitter.com/mikejohnson",
-      "github": "https://github.com/mikejohnson",
-      "linkedin": "https://linkedin.com/in/mikejohnson",
-      "dribbble": "https://dribbble.com/mikejohnson"
-    },
-    "skills": ["Product Strategy", "Agile", "Data Analysis", "User Stories", "Roadmapping"],
-    "contact": {
-      "email": "mike.johnson@example.com",
-      "phone": "+1 (555) 456-7890",
-      "whatsapp": "+15554567890"
-    },
-    "location": "Austin, TX",
-    "company": "Startup Inc"
   }
 ]
