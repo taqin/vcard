@@ -18,5 +18,45 @@
     },
     "location": "Singapore",
     "company": "Cendana Ventures Sdn Bhd (1641828-K)"
+  },
+  {
+    "id": "azihan",
+    "name": "Dr Azihan M.Osman",
+    "title": "Chief Product Officer",
+    "bio": "Passionate about creating user-friendly web applications and solving complex problems.",
+    "avatar": "/avatars/img-tq.jpg",
+    "website": "https://cendanaventures.com",
+    "social": {
+      "linkedin": "https://linkedin.com/in/taqinjamil",
+      "github": "https://github.com/taqinjamil"
+    },
+    "skills": ["JavaScript", "React", "Node.js", "TypeScript", "Next.js"],
+    "contact": {
+      "email": "taqin@cendanaventures.com",
+      "phone": "+65 8113 4252",
+      "whatsapp": "+6581134252"
+    },
+    "location": "Singapore",
+    "company": "Cendana Ventures Sdn Bhd (1641828-K)"
+  },
+  {
+    "id": "taqin",
+    "name": "Taqin Jamil",
+    "title": "Chief Product Officer",
+    "bio": "Passionate about creating user-friendly web applications and solving complex problems.",
+    "avatar": "/avatars/img-tq.jpg",
+    "website": "https://cendanaventures.com",
+    "social": {
+      "linkedin": "https://linkedin.com/in/taqinjamil",
+      "github": "https://github.com/taqinjamil"
+    },
+    "skills": ["JavaScript", "React", "Node.js", "TypeScript", "Next.js"],
+    "contact": {
+      "email": "taqin@cendanaventures.com",
+      "phone": "+65 8113 4252",
+      "whatsapp": "+6581134252"
+    },
+    "location": "Singapore",
+    "company": "Cendana Ventures Sdn Bhd (1641828-K)"
   }
 ]
