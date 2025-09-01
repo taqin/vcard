@@ -6,7 +6,7 @@ A modern Next.js application for creating and sharing digital business cards wit
 
 - **Dynamic Routing**: Each profile has its own URL (e.g., `/taqin`)
 - **Modern Design**: Beautiful, responsive vCard design with Tailwind CSS and Roboto font
-- **Interactive Buttons**: Add as Contact, Visit Website, and Send Email actions
+- **Interactive Buttons**: Add as Contact, Visit Website, Send Email, and WhatsApp messaging
 - **Analytics Tracking**: Google Analytics 4 integration for user interaction tracking
 - **Static Generation**: Profiles are pre-rendered at build time for optimal performance
 - **SEO Optimized**: Meta tags and Open Graph support for each profile
@@ -87,7 +87,8 @@ To add a new profile, edit the `data/profiles.json` file and add a new profile o
   "skills": ["Skill 1", "Skill 2", "Skill 3"],
   "contact": {
     "email": "email@example.com",
-    "phone": "+1 (555) 123-4567"
+    "phone": "+1 (555) 123-4567",
+    "whatsapp": "+15551234567"
   },
   "location": "City, State",
   "company": "Company Name"

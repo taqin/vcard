@@ -52,6 +52,8 @@ The application automatically tracks these events:
 - **contact_click**: Add as Contact button
 - **website_click**: Visit Website button  
 - **email_click**: Send Email button
+- **whatsapp_click**: WhatsApp messaging button
+- **whatsapp_chat_started**: Specific WhatsApp interaction tracking
 
 #### Social Media Clicks
 - **social_click**: Twitter, LinkedIn, GitHub, Dribbble links

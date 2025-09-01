@@ -30,3 +30,17 @@ export const trackProfileView = (profileId: string, profileName: string) => {
 export const trackButtonClick = (buttonType: string, profileId: string, profileName: string) => {
   trackEvent(`${buttonType}_click`, 'engagement', `${profileName} (${profileId})`)
 }
+
+// Track WhatsApp interactions specifically
+export const trackWhatsAppClick = (profileId: string, profileName: string, phoneNumber: string) => {
+  trackEvent('whatsapp_click', 'engagement', `${profileName} (${profileId})`, undefined)
+  // Additional WhatsApp-specific tracking
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'whatsapp_chat_started', {
+      event_category: 'communication',
+      event_label: profileName,
+      profile_id: profileId,
+      phone_number: phoneNumber.replace(/\D/g, ''), // Clean number for analytics
+    })
+  }
+}

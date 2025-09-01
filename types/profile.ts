@@ -15,6 +15,7 @@ export interface Profile {
   contact: {
     email: string
     phone: string
+    whatsapp?: string
   }
   location: string
   company: string
