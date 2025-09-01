@@ -1,6 +1,7 @@
 'use client'
 
 import { Profile } from '@/types/profile'
+import { trackButtonClick } from '@/lib/analytics'
 import { 
   FaTwitter, 
   FaGithub, 
@@ -18,8 +19,21 @@ interface VCardProps {
 
 export default function VCard({ profile }: VCardProps) {
   const handleConnect = () => {
+    trackButtonClick('contact', profile.id, profile.name)
     // In a real app, this could open a contact form or initiate a connection
     window.open(`mailto:${profile.contact.email}`, '_blank')
+  }
+
+  const handleVisitWebsite = () => {
+    trackButtonClick('website', profile.id, profile.name)
+    if (profile.website) {
+      window.open(profile.website, '_blank')
+    }
+  }
+
+  const handleSendEmail = () => {
+    trackButtonClick('email', profile.id, profile.name)
+    window.open(`mailto:${profile.contact.email}?subject=Hello ${profile.name}`, '_blank')
   }
 
   return (
@@ -39,101 +53,63 @@ export default function VCard({ profile }: VCardProps) {
       {/* Main content */}
       <div className="pt-16 pb-8 px-8 text-center">
         {/* Name and title */}
-        <h1 className="text-2xl font-bold text-gray-900 mb-2">
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">
           {profile.name}
         </h1>
-        <p className="text-lg text-purple-600 font-medium mb-4">
+        <p className="text-lg text-blue-600 font-medium mb-4">
           {profile.title}
         </p>
 
         {/* Bio */}
-        <p className="text-gray-600 mb-6 leading-relaxed">
+        <p className="text-sm text-gray-600 mb-6 leading-relaxed">
           {profile.bio}
         </p>
 
         {/* Contact info */}
         <div className="space-y-3 mb-6">
           <div className="flex items-center justify-center text-gray-600">
-            <FaEnvelope className="mr-2 text-purple-500" />
+            <FaEnvelope className="mr-2 text-blue-500" />
             <span className="text-sm">{profile.contact.email}</span>
           </div>
           <div className="flex items-center justify-center text-gray-600">
-            <FaPhone className="mr-2 text-purple-500" />
+            <FaPhone className="mr-2 text-blue-500" />
             <span className="text-sm">{profile.contact.phone}</span>
           </div>
           <div className="flex items-center justify-center text-gray-600">
-            <FaMapMarkerAlt className="mr-2 text-purple-500" />
+            <FaMapMarkerAlt className="mr-2 text-blue-500" />
             <span className="text-sm">{profile.location}</span>
           </div>
           <div className="flex items-center justify-center text-gray-600">
-            <FaBuilding className="mr-2 text-purple-500" />
+            <FaBuilding className="mr-2 text-blue-500" />
             <span className="text-sm">{profile.company}</span>
           </div>
         </div>
 
-        {/* Social links */}
-        <div className="flex justify-center space-x-4 mb-6">
-          {profile.social.twitter && (
-            <a
-              href={profile.social.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-blue-400 transition-colors"
-            >
-              <FaTwitter size={20} />
-            </a>
-          )}
-          {profile.social.github && (
-            <a
-              href={profile.social.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              <FaGithub size={20} />
-            </a>
-          )}
-          {profile.social.linkedin && (
-            <a
-              href={profile.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-blue-600 transition-colors"
-            >
-              <FaLinkedin size={20} />
-            </a>
-          )}
-          {profile.social.dribbble && (
-            <a
-              href={profile.social.dribbble}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-pink-500 transition-colors"
-            >
-              <FaDribbble size={20} />
-            </a>
-          )}
-        </div>
 
-        {/* Skills */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {profile.skills.map((skill, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
 
-        {/* Connect button */}
-        <button
-          onClick={handleConnect}
-          className="w-full bg-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
-        >
-          Connect
-        </button>
+        {/* Action buttons */}
+        <div className="space-y-3">
+          <button
+            onClick={handleConnect}
+            className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
+          >
+            Add as Contact
+          </button>
+          <button
+            onClick={handleSendEmail}
+            className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
+          >
+            Send me an Email
+          </button>
+          
+          <button
+            onClick={handleVisitWebsite}
+            className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
+          >
+            Visit my Website
+          </button>
+          
+        </div>
       </div>
     </div>
   )

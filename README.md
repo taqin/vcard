@@ -4,8 +4,10 @@ A modern Next.js application for creating and sharing digital business cards wit
 
 ## Features
 
-- **Dynamic Routing**: Each profile has its own URL (e.g., `/john-doe`)
-- **Modern Design**: Beautiful, responsive vCard design with Tailwind CSS
+- **Dynamic Routing**: Each profile has its own URL (e.g., `/taqin`)
+- **Modern Design**: Beautiful, responsive vCard design with Tailwind CSS and Roboto font
+- **Interactive Buttons**: Add as Contact, Visit Website, and Send Email actions
+- **Analytics Tracking**: Google Analytics 4 integration for user interaction tracking
 - **Static Generation**: Profiles are pre-rendered at build time for optimal performance
 - **SEO Optimized**: Meta tags and Open Graph support for each profile
 - **TypeScript**: Full type safety throughout the application
@@ -15,8 +17,9 @@ A modern Next.js application for creating and sharing digital business cards wit
 - **Next.js 15**: Latest version with App Router
 - **React 19**: Latest React features
 - **TypeScript**: Type safety and better developer experience
-- **Tailwind CSS**: Utility-first CSS framework
+- **Tailwind CSS**: Utility-first CSS framework with Roboto webfont
 - **React Icons**: Beautiful icon library
+- **Google Analytics 4**: User interaction and engagement tracking
 
 ## Getting Started
 
@@ -30,7 +33,13 @@ A modern Next.js application for creating and sharing digital business cards wit
    npm run dev
    ```
 
-3. **Open your browser**:
+3. **Configure Analytics (Optional)**:
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local and add your Google Analytics ID
+   ```
+
+4. **Open your browser**:
    Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## Project Structure
@@ -43,13 +52,17 @@ A modern Next.js application for creating and sharing digital business cards wit
 │   ├── page.tsx           # Home page
 │   └── not-found.tsx      # 404 page
 ├── components/            # React components
-│   └── VCard.tsx         # Main vCard component
+│   ├── VCard.tsx         # Main vCard component
+│   ├── GoogleAnalytics.tsx # GA4 tracking
+│   └── ProfileTracker.tsx # Profile view tracking
 ├── data/                  # Static data
 │   └── profiles.json     # Profile data
 ├── lib/                   # Utility functions
-│   └── profiles.ts       # Profile data management
+│   ├── profiles.ts       # Profile data management
+│   └── analytics.ts      # Analytics tracking utilities
 ├── types/                 # TypeScript types
-│   └── profile.ts        # Profile interface
+│   ├── profile.ts        # Profile interface
+│   └── global.d.ts       # Global type declarations
 └── public/               # Static assets
 ```
 
@@ -64,6 +77,7 @@ To add a new profile, edit the `data/profiles.json` file and add a new profile o
   "title": "Job Title",
   "bio": "Professional bio...",
   "avatar": "https://example.com/avatar.jpg",
+  "website": "https://yourwebsite.com",
   "social": {
     "twitter": "https://twitter.com/username",
     "github": "https://github.com/username",

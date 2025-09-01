@@ -16,6 +16,6 @@
 
 @layer components {
   .gradient-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #a3a3a3 100%);
   }
 }

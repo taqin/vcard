@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { getProfileById, getAllProfileIds } from '@/lib/profiles'
 import { Metadata } from 'next'
 import VCard from '@/components/VCard'
+import ProfileTracker from '@/components/ProfileTracker'
 
 interface ProfilePageProps {
   params: Promise<{ profile: string }>
@@ -46,6 +47,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md mx-auto">
+        <ProfileTracker profile={profileData} />
         <VCard profile={profileData} />
       </div>
     </div>

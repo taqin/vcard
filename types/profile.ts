@@ -4,6 +4,7 @@ export interface Profile {
   title: string
   bio: string
   avatar: string
+  website?: string
   social: {
     twitter?: string
     github?: string
