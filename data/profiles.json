@@ -3,7 +3,7 @@
     "id": "taqin",
     "name": "Taqin Jamil",
     "title": "Chief Product Officer",
-    "bio": "Passionate about creating user-friendly web applications and solving complex problems.",
+    "bio": "Start-up Valuation  |  Financial Advisory  |  Fintech Innovation  |  Business Management",
     "avatar": "/avatars/img-tq.jpg",
     "website": "https://cendanaventures.com",
     "social": {
@@ -23,7 +23,7 @@
     "id": "azihan",
     "name": "Dr Azihan M.Osman",
     "title": "Executive Director",
-    "bio": "",
+    "bio": "Start-up Valuation  |  Financial Advisory  |  Fintech Innovation  |  Business Management",
     "avatar": "/avatars/img-azihan.jpg",
     "website": "https://cendanaventures.com",
     "social": {
@@ -43,7 +43,7 @@
     "id": "soraya",
     "name": "Datin Soraya Merican",
     "title": "Director of Finance",
-    "bio": "Passionate about creating user-friendly web applications and solving complex problems.",
+    "bio": "Start-up Valuation  |  Financial Advisory  |  Fintech Innovation  |  Business Management",
     "avatar": "/avatars/img-soraya.jpg",
     "website": "https://cendanaventures.com",
     "social": {
@@ -57,6 +57,26 @@
       "whatsapp": "+60133632823"
     },
     "location": "Malaysia",
+    "company": "Cendana Ventures Sdn Bhd (1641828-K)"
+  },
+  {
+    "id": "harry",
+    "name": "Harry Saputra",
+    "title": "Chief Technology Officer",
+    "bio": "Start-up Valuation  |  Financial Advisory  |  Fintech Innovation  |  Business Management",
+    "avatar": "/avatars/img-harry.jpg",
+    "website": "https://cendanaventures.com",
+    "social": {
+      "linkedin": "https://linkedin.com/in/taqin",
+      "github": "https://github.com/taqin"
+    },
+    "skills": ["JavaScript", "React", "Node.js", "TypeScript", "Next.js"],
+    "contact": {
+      "email": "harry@cendanaventures.com",
+      "phone": "+62 811 5741 200",
+      "whatsapp": "+628115741200"
+    },
+    "location": "Indonesia",
     "company": "Cendana Ventures Sdn Bhd (1641828-K)"
   }
 ]
