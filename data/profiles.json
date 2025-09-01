@@ -22,41 +22,41 @@
   {
     "id": "azihan",
     "name": "Dr Azihan M.Osman",
-    "title": "Chief Product Officer",
-    "bio": "Passionate about creating user-friendly web applications and solving complex problems.",
-    "avatar": "/avatars/img-tq.jpg",
+    "title": "Executive Director",
+    "bio": "",
+    "avatar": "/avatars/img-azihan.jpg",
     "website": "https://cendanaventures.com",
     "social": {
-      "linkedin": "https://linkedin.com/in/taqinjamil",
-      "github": "https://github.com/taqinjamil"
+      "linkedin": "https://linkedin.com/in/taqin",
+      "github": "https://github.com/taqin"
     },
     "skills": ["JavaScript", "React", "Node.js", "TypeScript", "Next.js"],
     "contact": {
-      "email": "taqin@cendanaventures.com",
-      "phone": "+65 8113 4252",
-      "whatsapp": "+6581134252"
+      "email": "azihan@cendanaventures.com",
+      "phone": "+60 19660 5616",
+      "whatsapp": "+60196605616"
     },
-    "location": "Singapore",
+    "location": "Malaysia",
     "company": "Cendana Ventures Sdn Bhd (1641828-K)"
   },
   {
-    "id": "taqin",
-    "name": "Taqin Jamil",
-    "title": "Chief Product Officer",
+    "id": "soraya",
+    "name": "Datin Soraya Merican",
+    "title": "Director of Finance",
     "bio": "Passionate about creating user-friendly web applications and solving complex problems.",
-    "avatar": "/avatars/img-tq.jpg",
+    "avatar": "/avatars/img-soraya.jpg",
     "website": "https://cendanaventures.com",
     "social": {
-      "linkedin": "https://linkedin.com/in/taqinjamil",
-      "github": "https://github.com/taqinjamil"
+      "linkedin": "https://linkedin.com/in/taqin",
+      "github": "https://github.com/taqin"
     },
     "skills": ["JavaScript", "React", "Node.js", "TypeScript", "Next.js"],
     "contact": {
-      "email": "taqin@cendanaventures.com",
-      "phone": "+65 8113 4252",
-      "whatsapp": "+6581134252"
+      "email": "soraya@cendanaventures.com",
+      "phone": "+60 13363 2823",
+      "whatsapp": "+60133632823"
     },
-    "location": "Singapore",
+    "location": "Malaysia",
     "company": "Cendana Ventures Sdn Bhd (1641828-K)"
   }
 ]
