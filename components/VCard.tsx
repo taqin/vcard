@@ -26,8 +26,69 @@ interface VCardProps {
 export default function VCard({ profile }: VCardProps) {
   const handleConnect = () => {
     trackButtonClick('contact', profile.id, profile.name)
-    // In a real app, this could open a contact form or initiate a connection
-    window.open(`mailto:${profile.contact.email}`, '_blank')
+    
+    // Generate vCard content
+    const vCardContent = generateVCard(profile)
+    
+    // Create and download vCard file
+    const blob = new Blob([vCardContent], { type: 'text/vcard;charset=utf-8' })
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `${profile.name.replace(/\s+/g, '_')}.vcf`
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+    window.URL.revokeObjectURL(url)
+  }
+
+  const generateVCard = (profile: Profile): string => {
+    // Clean phone numbers for vCard format
+    const cleanPhone = profile.contact.phone.replace(/\D/g, '')
+    const cleanWhatsApp = profile.contact.whatsapp?.replace(/\D/g, '') || ''
+    
+    // Build vCard content following vCard 3.0 specification
+    let vCard = 'BEGIN:VCARD\n'
+    vCard += 'VERSION:3.0\n'
+    vCard += `FN:${profile.name}\n`
+    vCard += `ORG:${profile.company}\n`
+    vCard += `TITLE:${profile.title}\n`
+    vCard += `EMAIL:${profile.contact.email}\n`
+    vCard += `TEL;TYPE=VOICE:${profile.contact.phone}\n`
+    
+    if (profile.contact.whatsapp) {
+      vCard += `TEL;TYPE=CELL:${profile.contact.whatsapp}\n`
+    }
+    
+    if (profile.website) {
+      vCard += `URL:${profile.website}\n`
+    }
+    
+    vCard += `NOTE:${profile.bio}\n`
+    vCard += `ADR;TYPE=WORK:;;${profile.location};;;;\n`
+    
+    // Add social media as URLs
+    if (profile.social.linkedin) {
+      vCard += `URL;TYPE=LinkedIn:${profile.social.linkedin}\n`
+    }
+    if (profile.social.github) {
+      vCard += `URL;TYPE=GitHub:${profile.social.github}\n`
+    }
+    if (profile.social.twitter) {
+      vCard += `URL;TYPE=Twitter:${profile.social.twitter}\n`
+    }
+    if (profile.social.dribbble) {
+      vCard += `URL;TYPE=Dribbble:${profile.social.dribbble}\n`
+    }
+    
+    // Add photo URL if available
+    if (profile.avatar) {
+      vCard += `PHOTO;VALUE=URI:${profile.avatar}\n`
+    }
+    
+    vCard += 'END:VCARD'
+    
+    return vCard
   }
 
   const handleVisitWebsite = () => {
@@ -80,12 +141,14 @@ export default function VCard({ profile }: VCardProps) {
       {/* Main content */}
       <div className="pt-16 pb-8 px-8 text-center">
         {/* Name and title */}
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+        <h1 className="text-5xl font-bold text-gray-900 mb-2">
           {profile.name}
         </h1>
-        <p className="text-lg text-blue-600 font-medium mb-4">
+        <p className="text-lg text-blue-600 font-medium mb-1">
           {profile.title}
         </p>
+        
+        <p className='text-sm text-blue-600 font-italic mb-4'>{profile.company}</p>
 
         {/* Bio */}
         <p className="text-sm text-gray-600 mb-6 leading-relaxed">

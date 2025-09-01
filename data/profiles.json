@@ -5,19 +5,19 @@
     "title": "Chief Product Officer",
     "bio": "Passionate about creating user-friendly web applications and solving complex problems.",
     "avatar": "https://media.licdn.com/dms/image/v2/D5603AQEmPwB4F2SYUA/profile-displayphoto-shrink_200_200/B56ZUXASN.HsAg-/0/1739847706043?e=1759363200&v=beta&t=5ukXOlfxcBeJYPy15s6XhDte3TkCuBovXXJrUZkPoY4",
-    "website": "https://taqinjamil.com",
+    "website": "https://cendanaventures.com",
     "social": {
       "linkedin": "https://linkedin.com/in/taqinjamil",
       "github": "https://github.com/taqinjamil"
     },
     "skills": ["JavaScript", "React", "Node.js", "TypeScript", "Next.js"],
     "contact": {
-      "email": "taqin@example.com",
-      "phone": "+65 8123 4567",
-      "whatsapp": "+6581234567"
+      "email": "taqin@cendanaventures.com",
+      "phone": "+65 8113 4252",
+      "whatsapp": "+6581134252"
     },
     "location": "Singapore",
-    "company": "Cendana Ventures"
+    "company": "Cendana Ventures Sdn Bhd (1641828-K)"
   },
   {
     "id": "jane-smith",
