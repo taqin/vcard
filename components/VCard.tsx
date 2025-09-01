@@ -18,24 +18,75 @@ import {
   FaGalacticRepublic,
   FaChrome
 } from 'react-icons/fa'
+import Image from 'next/image'
 
 interface VCardProps {
   profile: Profile
 }
 
 export default function VCard({ profile }: VCardProps) {
-  const handleConnect = () => {
+  const handleConnect = async () => {
     trackButtonClick('contact', profile.id, profile.name)
     
     // Generate vCard content
     const vCardContent = generateVCard(profile)
     
-    // Create and download vCard file
+    // Detect if user is on mobile device
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    
+    if (isMobile) {
+      // Try multiple approaches for mobile devices
+      try {
+        // Method 1: Try Web Share API first (most modern approach)
+        if (navigator.share) {
+          const blob = new Blob([vCardContent], { type: 'text/vcard' })
+          const file = new File([blob], `${profile.name.replace(/\s+/g, '_')}.vcf`, { type: 'text/vcard' })
+          
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              title: `Contact: ${profile.name}`,
+              text: `Add ${profile.name} to your contacts`,
+              files: [file]
+            })
+            return
+          }
+        }
+        
+        // Method 2: Try data URL approach
+        const dataUrl = `data:text/vcard;charset=utf-8,${encodeURIComponent(vCardContent)}`
+        window.open(dataUrl, '_blank')
+        
+        // Method 3: Fallback to blob URL if data URL doesn't trigger contacts app
+        setTimeout(() => {
+          const blob = new Blob([vCardContent], { type: 'text/vcard;charset=utf-8' })
+          const url = window.URL.createObjectURL(blob)
+          const tempLink = document.createElement('a')
+          tempLink.href = url
+          tempLink.target = '_blank'
+          tempLink.click()
+          
+          // Clean up
+          setTimeout(() => {
+            window.URL.revokeObjectURL(url)
+          }, 1000)
+        }, 500)
+        
+      } catch (error) {
+        console.log('Mobile contact methods failed, falling back to download:', error)
+        downloadVCard(vCardContent, profile.name)
+      }
+    } else {
+      // Desktop: download the vCard file
+      downloadVCard(vCardContent, profile.name)
+    }
+  }
+
+  const downloadVCard = (vCardContent: string, name: string) => {
     const blob = new Blob([vCardContent], { type: 'text/vcard;charset=utf-8' })
     const url = window.URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = `${profile.name.replace(/\s+/g, '_')}.vcf`
+    link.download = `${name.replace(/\s+/g, '_')}.vcf`
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -68,18 +119,18 @@ export default function VCard({ profile }: VCardProps) {
     vCard += `ADR;TYPE=WORK:;;${profile.location};;;;\n`
     
     // Add social media as URLs
-    if (profile.social.linkedin) {
-      vCard += `URL;TYPE=LinkedIn:${profile.social.linkedin}\n`
-    }
-    if (profile.social.github) {
-      vCard += `URL;TYPE=GitHub:${profile.social.github}\n`
-    }
-    if (profile.social.twitter) {
-      vCard += `URL;TYPE=Twitter:${profile.social.twitter}\n`
-    }
-    if (profile.social.dribbble) {
-      vCard += `URL;TYPE=Dribbble:${profile.social.dribbble}\n`
-    }
+    // if (profile.social.linkedin) {
+    //   vCard += `URL;TYPE=LinkedIn:${profile.social.linkedin}\n`
+    // }
+    // if (profile.social.github) {
+    //   vCard += `URL;TYPE=GitHub:${profile.social.github}\n`
+    // }
+    // if (profile.social.twitter) {
+    //   vCard += `URL;TYPE=Twitter:${profile.social.twitter}\n`
+    // }
+    // if (profile.social.dribbble) {
+    //   vCard += `URL;TYPE=Dribbble:${profile.social.dribbble}\n`
+    // }
     
     // Add photo URL if available
     if (profile.avatar) {
@@ -130,11 +181,22 @@ export default function VCard({ profile }: VCardProps) {
         <div className="absolute inset-0 bg-black bg-opacity-20"></div>
         {/* Profile picture overlapping header and content */}
         <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-12 z-10">
-          <img
-            src={profile.avatar}
-            alt={profile.name}
-            className="w-24 h-24 rounded-full border-4 border-white shadow-lg"
-          />
+          {profile.avatar.startsWith('/') ? (
+            <Image
+              src={profile.avatar}
+              alt={profile.name}
+              width={96}
+              height={96}
+              className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover"
+              priority
+            />
+          ) : (
+            <img
+              src={profile.avatar}
+              alt={profile.name}
+              className="w-24 h-24 rounded-full border-4 border-white shadow-lg object-cover"
+            />
+          )}
         </div>
       </div>
 
@@ -175,26 +237,9 @@ export default function VCard({ profile }: VCardProps) {
           </div>
         </div> */}
 
-
-
         {/* Action buttons */}
-        <div className="space-y-3">
-          <button
-            onClick={handleConnect}
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-          >
-            <FaPhone size={20} />
-            Add as Contact
-          </button>
-          <button
-            onClick={handleSendEmail}
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
-          >
-            <FaMailBulk size={20} />
-            Send me an Email
-          </button>
-          
-          {profile.contact.whatsapp && (
+        <div className="space-y-3">                    
+        {profile.contact.whatsapp && (
             <button
               onClick={handleWhatsApp}
               className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
@@ -203,7 +248,23 @@ export default function VCard({ profile }: VCardProps) {
               Send me a WhatsApp
             </button>
           )}
-          
+
+          <button
+            onClick={handleConnect}
+            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+          >
+            <FaPhone size={20} />
+            Add as Contact
+          </button>
+
+          <button
+            onClick={handleSendEmail}
+            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-purple-700 transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+          >
+            <FaMailBulk size={20} />
+            Send me an Email
+          </button>
+
           <button
             onClick={handleVisitWebsite}
             className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
